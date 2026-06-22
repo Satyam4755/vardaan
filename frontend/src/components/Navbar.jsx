@@ -42,6 +42,7 @@ function Navbar() {
           className="menu-toggle"
           type="button"
           aria-label="Toggle navigation"
+          aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
         >
           <span />
@@ -52,11 +53,15 @@ function Navbar() {
         <nav className={`site-nav ${isOpen ? 'site-nav--open' : ''}`}>
           <div className="site-nav__links">
             {publicLinks.map((link) => (
-              <a key={link.label} href={link.href}>
+              <a key={link.label} className="site-nav__item" href={link.href}>
                 {link.label}
               </a>
             ))}
-            {user ? <NavLink to="/dashboard">Dashboard</NavLink> : null}
+            {user ? (
+              <NavLink className="site-nav__item" to="/dashboard">
+                Dashboard
+              </NavLink>
+            ) : null}
           </div>
 
           <div className="site-nav__actions">
@@ -71,7 +76,7 @@ function Navbar() {
               </>
             ) : (
               <>
-                <NavLink className="text-link" to="/login">
+                <NavLink className="text-link site-nav__item" to="/login">
                   Login
                 </NavLink>
                 <Link className="btn btn--primary" to="/signup">
