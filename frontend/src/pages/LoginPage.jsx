@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 
 import FormField from '../components/FormField';
 import { useAuth } from '../context/AuthContext';
@@ -11,7 +12,7 @@ function LoginPage() {
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const { login, user } = useAuth();
+  const { login, googleAuth, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.from?.pathname || '/dashboard';
@@ -40,6 +41,23 @@ function LoginPage() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setError('');
+    setSubmitting(true);
+    try {
+      await googleAuth(credentialResponse.credential);
+      navigate(redirectTo, { replace: true });
+    } catch (requestError) {
+      setError(requestError.response?.data?.message || 'Unable to log you in with Google right now.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError('Google login failed. Please try again.');
   };
 
   return (
@@ -90,7 +108,23 @@ function LoginPage() {
             {submitting ? 'Logging in...' : 'Login'}
           </button>
 
-          <p className="form-caption">
+          <div style={{ display: 'flex', alignItems: 'center', margin: '1rem 0' }}>
+            <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--border)' }}></div>
+            <span style={{ margin: '0 1rem', color: 'var(--text-muted)' }}>or</span>
+            <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--border)' }}></div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme="outline"
+              size="large"
+              width="100%"
+            />
+          </div>
+
+          <p className="form-caption" style={{ marginTop: '1rem' }}>
             Need an account? <Link to="/signup">Create one here.</Link>
           </p>
         </form>

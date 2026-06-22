@@ -1,6 +1,9 @@
 const User = require('../models/User');
 const asyncHandler = require('../utils/asyncHandler');
 const { clearTokenCookie, setTokenCookie } = require('../utils/generateToken');
+const { OAuth2Client } = require('google-auth-library');
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const formatUserResponse = (user) => ({
   id: user._id,
@@ -69,6 +72,46 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
+const googleAuth = asyncHandler(async (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    res.status(400);
+    throw new Error('Google token is required.');
+  }
+
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+
+  const { name, email, picture, sub } = ticket.getPayload();
+
+  let user = await User.findOne({ email: email.toLowerCase() });
+
+  if (!user) {
+    user = await User.create({
+      fullName: name,
+      email: email.toLowerCase(),
+      authProvider: 'google',
+      googleId: sub,
+      avatar: picture,
+    });
+  } else if (!user.googleId) {
+    user.googleId = sub;
+    user.authProvider = 'google';
+    if (!user.avatar) user.avatar = picture;
+    await user.save();
+  }
+
+  setTokenCookie(res, user._id);
+
+  res.json({
+    message: 'Google login successful.',
+    user: formatUserResponse(user),
+  });
+});
+
 const logoutUser = asyncHandler(async (req, res) => {
   clearTokenCookie(res);
 
@@ -88,4 +131,5 @@ module.exports = {
   loginUser,
   logoutUser,
   getCurrentUser,
+  googleAuth,
 };
