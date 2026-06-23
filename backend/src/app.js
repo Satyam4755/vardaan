@@ -9,27 +9,9 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
 
-app.set('trust proxy', 1);
-
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://vardaansolutions.vercel.app',
-  'https://vardaansolutions.onrender.com'
-];
-
-if (process.env.FRONTEND_URL) {
-  allowedOrigins.push(...process.env.FRONTEND_URL.split(',').map(url => url.trim()));
-}
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: [process.env.FRONTEND_URL, 'https://vardaansolutions.vercel.app', 'https://vardaansolutions.onrender.com', 'http://localhost:5173'],
     credentials: true,
   })
 );
