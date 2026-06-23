@@ -244,7 +244,7 @@ function RequestBuildPage() {
           <div className="choice-panel">
             <div>
               <span className="field__label">Need deployment?</span>
-              <p className="field__hint">Deployment adds 500. Maintenance remains included.</p>
+              <p className="field__hint">Deployment adds 500.</p>
             </div>
             <div className="segmented-control">
               <button

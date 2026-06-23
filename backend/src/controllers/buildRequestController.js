@@ -1,6 +1,7 @@
 const BuildRequest = require('../models/BuildRequest');
 const asyncHandler = require('../utils/asyncHandler');
 const { calculatePricing } = require('../utils/calculatePricing');
+const { sendBuildRequestNotification } = require('../utils/sendEmail');
 
 const normalizeFeatures = (requiredFeatures) => {
   if (Array.isArray(requiredFeatures)) {
@@ -11,6 +12,15 @@ const normalizeFeatures = (requiredFeatures) => {
     .split(/[\n,]/)
     .map((feature) => feature.trim())
     .filter(Boolean);
+};
+
+const getComputedTimeline = (packageLevel) => {
+  switch (packageLevel) {
+    case 'basic': return 'Same day / 1 day';
+    case 'intermediate': return '2 days';
+    case 'professional': return '1–2 weeks';
+    default: return 'Pending';
+  }
 };
 
 const createBuildRequest = asyncHandler(async (req, res) => {
@@ -26,7 +36,6 @@ const createBuildRequest = asyncHandler(async (req, res) => {
     requiredFeatures,
     extraFeaturesCount,
     needDeployment,
-    timeline,
     additionalNotes,
   } = req.body;
 
@@ -46,8 +55,7 @@ const createBuildRequest = asyncHandler(async (req, res) => {
     !projectTitle ||
     !normalizedProjectType ||
     !projectDescription ||
-    !normalizedPackage ||
-    !timeline
+    !normalizedPackage
   ) {
     res.status(400);
     throw new Error('Please complete all required request fields.');
@@ -92,9 +100,14 @@ const createBuildRequest = asyncHandler(async (req, res) => {
     requiredFeatures: normalizedFeatures,
     extraFeaturesCount: extraFeatureCountValue,
     needDeployment: needsDeployment,
-    timeline,
+    timeline: getComputedTimeline(normalizedPackage),
     additionalNotes,
     pricing,
+  });
+
+  // Trigger email notification (non-blocking)
+  sendBuildRequestNotification(buildRequest).catch(err => {
+    console.error('Unhandled email error:', err);
   });
 
   res.status(201).json({

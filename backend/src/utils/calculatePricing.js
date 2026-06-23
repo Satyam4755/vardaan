@@ -28,7 +28,7 @@ const calculatePricing = ({ selectedPackage, extraFeaturesCount = 0, needDeploym
     extraFeaturesPrice,
     deploymentPrice,
     totalPrice: basePrice + extraFeaturesPrice + deploymentPrice,
-    maintenanceIncluded: true,
+    // maintenanceIncluded: true,
   };
 };
 

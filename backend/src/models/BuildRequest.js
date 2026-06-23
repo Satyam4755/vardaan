@@ -89,10 +89,10 @@ const buildRequestSchema = new mongoose.Schema(
         type: Number,
         required: true,
       },
-      maintenanceIncluded: {
-        type: Boolean,
-        default: true,
-      },
+      // maintenanceIncluded: {
+      //   type: Boolean,
+      //   default: true,
+      // },
     },
     status: {
       type: String,

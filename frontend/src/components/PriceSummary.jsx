@@ -41,7 +41,7 @@ function PriceSummary({ selectedPackage, extraFeaturesCount, needDeployment, fea
           <dd>{featureCount}</dd>
         </div>
         <div>
-          <dt>Maintenance</dt>
+          {/* <dt>Maintenance</dt> */}
           <dd>Included by company</dd>
         </div>
       </dl>

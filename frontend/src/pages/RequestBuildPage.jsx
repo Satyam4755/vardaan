@@ -18,7 +18,6 @@ const initialFormState = {
   requiredFeaturesText: 'Homepage\nLead capture form\nAdmin-ready content sections',
   extraFeaturesCount: 0,
   needDeployment: false,
-  timeline: '2-4 weeks',
   additionalNotes: '',
 };
 
@@ -70,7 +69,6 @@ function RequestBuildPage() {
           .filter(Boolean),
         extraFeaturesCount: formData.extraFeaturesCount,
         needDeployment: formData.needDeployment,
-        timeline: formData.timeline,
         additionalNotes: formData.additionalNotes,
       });
 
@@ -88,6 +86,15 @@ function RequestBuildPage() {
     .split(/[\n,]/)
     .map((feature) => feature.trim())
     .filter(Boolean).length;
+
+  const getTimelineString = () => {
+    switch (formData.selectedPackage) {
+      case 'basic': return 'Same day / 1 day';
+      case 'intermediate': return '2 days';
+      case 'professional': return '1–2 weeks';
+      default: return '';
+    }
+  };
 
   return (
     <section className="page-shell container">
@@ -129,8 +136,9 @@ function RequestBuildPage() {
                 name="email"
                 type="email"
                 value={formData.email}
-                onChange={handleChange}
-                placeholder="you@business.com"
+                readOnly
+                className="is-readonly"
+                title="Your email is tied to your account"
                 required
               />
             </FormField>
@@ -244,7 +252,7 @@ function RequestBuildPage() {
           <div className="choice-panel">
             <div>
               <span className="field__label">Need deployment?</span>
-              <p className="field__hint">Deployment adds 500. Maintenance remains included.</p>
+              <p className="field__hint">Deployment adds 500.</p>
             </div>
             <div className="segmented-control">
               <button
@@ -269,11 +277,16 @@ function RequestBuildPage() {
               <input
                 id="timeline"
                 name="timeline"
-                value={formData.timeline}
-                onChange={handleChange}
-                placeholder="6 weeks"
+                value={getTimelineString()}
+                readOnly
+                className="is-readonly"
                 required
               />
+              {formData.selectedPackage === 'professional' && (
+                <p className="field__hint" style={{ marginTop: '0.5rem', color: 'var(--maroon-700)' }}>
+                  You can customise the timeline by contacting us. It may affect the charge accordingly.
+                </p>
+              )}
             </FormField>
 
             <FormField id="additionalNotes" label="Additional notes">

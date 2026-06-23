@@ -8,7 +8,7 @@ import {
 export const heroStats = [
   { label: 'Projects planned around business goals', value: '100%' },
   { label: 'Average kickoff response', value: '24 hrs' },
-  { label: 'Maintenance coverage included', value: 'Yes' },
+  // { label: 'Maintenance coverage included', value: 'Yes' },
 ];
 
 export const serviceCards = [
@@ -25,7 +25,7 @@ export const serviceCards = [
   {
     title: 'Software Delivery',
     description:
-      'Product strategy, technical architecture, deployment support, and ongoing maintenance for growing teams.',
+      'Product strategy, technical architecture, deployment support.',
   },
 ];
 
@@ -56,5 +56,5 @@ export const pricingCards = [
 export const pricingNotes = [
   `Deployment add-on: ${formatCurrency(DEPLOYMENT_RATE)}`,
   `Each extra feature: ${formatCurrency(EXTRA_FEATURE_RATE)}`,
-  'Maintenance is included by company',
+  // 'Maintenance is included by company',
 ];

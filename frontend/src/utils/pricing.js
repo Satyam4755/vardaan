@@ -42,6 +42,6 @@ export const calculatePriceSummary = ({
     extraFeaturesPrice,
     deploymentPrice,
     totalPrice: basePrice + extraFeaturesPrice + deploymentPrice,
-    maintenanceIncluded: true,
+    // maintenanceIncluded: true,
   };
 };

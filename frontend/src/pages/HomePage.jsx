@@ -41,7 +41,7 @@ function HomePage() {
             <ul className="feature-list">
               <li>Brand-conscious frontend built with React and Vite</li>
               <li>Clean Express and MongoDB backend with admin-ready structure</li>
-              <li>Deployment planning, documentation, and maintenance coverage included</li>
+              <li>Deployment planning, documentation included</li>
             </ul>
           </article>
 

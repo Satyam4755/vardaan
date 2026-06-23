@@ -28,7 +28,7 @@ function DashboardPage() {
         if (isActive) {
           setError(
             requestError.response?.data?.message ||
-              'We could not load your build requests right now.'
+            'We could not load your build requests right now.'
           );
         }
       } finally {
@@ -89,7 +89,7 @@ function DashboardPage() {
           <strong>{formatCurrency(totalPipelineValue)}</strong>
         </article>
         <article className="metric-card">
-          <span>Maintenance</span>
+          {/* <span>Maintenance</span> */}
           <strong>Included</strong>
         </article>
       </div>
@@ -140,7 +140,7 @@ function DashboardPage() {
 
               <div className="request-card__footer">
                 <span>Extra features: {request.extraFeaturesCount}</span>
-                <span>Maintenance included</span>
+                {/* <span>Maintenance included</span> */}
               </div>
             </article>
           ))}
