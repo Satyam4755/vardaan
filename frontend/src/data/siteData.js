@@ -54,7 +54,7 @@ export const pricingCards = [
 ];
 
 export const pricingNotes = [
-  `Deployment add-on: ₹{formatCurrency(DEPLOYMENT_RATE)}`,
-  `Each extra feature: ₹{formatCurrency(EXTRA_FEATURE_RATE)}`,
+  `Deployment add-on: ${formatCurrency(DEPLOYMENT_RATE)}`,
+  `Each extra feature: ${formatCurrency(EXTRA_FEATURE_RATE)}`,
   'Maintenance is included by company',
 ];
