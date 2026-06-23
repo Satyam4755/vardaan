@@ -10,7 +10,7 @@ const publicLinks = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { user, loading, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ function Navbar() {
           </div>
 
           <div className="site-nav__actions">
-            {user ? (
+            {loading ? null : user ? (
               <>
                 <Link className="btn btn--ghost" to="/request-build">
                   Request Build

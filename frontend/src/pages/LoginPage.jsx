@@ -12,16 +12,16 @@ function LoginPage() {
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const { login, googleAuth, user } = useAuth();
+  const { login, googleAuth, user, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.from?.pathname || '/dashboard';
 
   useEffect(() => {
-    if (user) {
+    if (!loading && user) {
       navigate(redirectTo, { replace: true });
     }
-  }, [navigate, redirectTo, user]);
+  }, [navigate, redirectTo, user, loading]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -59,6 +59,17 @@ function LoginPage() {
   const handleGoogleError = () => {
     setError('Google login failed. Please try again.');
   };
+
+  if (loading) {
+    return (
+      <section className="page-shell container auth-shell">
+        <div className="panel panel--center" style={{ margin: 'auto' }}>
+          <div className="spinner" />
+          <p>Checking your session...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="page-shell container auth-shell">
