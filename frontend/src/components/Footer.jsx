@@ -6,14 +6,6 @@ const exploreLinks = [
   { label: 'Pricing', href: '/#pricing' },
 ];
 
-const verificationRoutes = [
-  { label: 'Home', to: '/', path: '/' },
-  { label: 'Login', to: '/login', path: '/login' },
-  { label: 'Signup', to: '/signup', path: '/signup' },
-  { label: 'Request Build', to: '/request-build', path: '/request-build' },
-  { label: 'Dashboard', to: '/dashboard', path: '/dashboard' },
-];
-
 function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -45,18 +37,6 @@ function Footer() {
                     </Link>
                   )
                 )}
-              </div>
-            </section>
-
-            <section>
-              <h4>Verification Routes</h4>
-              <div className="footer-links footer-links--routes">
-                {verificationRoutes.map((route) => (
-                  <Link key={route.path} to={route.to} className="footer-route">
-                    <strong>{route.label}</strong>
-                    <span>{route.path}</span>
-                  </Link>
-                ))}
               </div>
             </section>
 
