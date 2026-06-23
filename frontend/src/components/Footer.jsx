@@ -6,6 +6,11 @@ const exploreLinks = [
   { label: 'Pricing', href: '/#pricing' },
 ];
 
+const legalLinks = [
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms of Service', to: '/terms' },
+];
+
 function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -40,12 +45,20 @@ function Footer() {
               </div>
             </section>
 
+            <section>
+              <h4>Legal</h4>
+              <div className="footer-links">
+                {legalLinks.map((link) => (
+                  <Link key={link.label} to={link.to}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             <section className="footer-cta">
               <h4>Project Access</h4>
-              <p>
-                These footer links keep all 5 application routes visible and easy to verify for
-                payment gateway or deployment review.
-              </p>
+              <p>Start your custom website or software build.</p>
               <Link className="btn btn--primary" to="/request-build">
                 Request Build
               </Link>
