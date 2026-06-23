@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const exploreLinks = [
   { label: 'Home', to: '/' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Services', to: '/services' },
+  { label: 'Pricing', to: '/pricing' },
 ];
 
 const legalLinks = [
@@ -31,17 +31,11 @@ function Footer() {
             <section>
               <h4>Explore</h4>
               <div className="footer-links">
-                {exploreLinks.map((link) =>
-                  link.href ? (
-                    <a key={link.label} href={link.href}>
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link key={link.label} to={link.to}>
-                      {link.label}
-                    </Link>
-                  )
-                )}
+                {exploreLinks.map((link) => (
+                  <Link key={link.label} to={link.to}>
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             </section>
 

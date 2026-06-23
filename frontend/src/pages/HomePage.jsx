@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { heroStats, pricingCards, pricingNotes, serviceCards } from '../data/siteData';
-import { formatCurrency } from '../utils/pricing';
+import { heroStats } from '../data/siteData';
 
 function HomePage() {
   const requestPath = '/request-build';
@@ -56,51 +55,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="services" className="section container">
-        <div className="section-heading">
-          <p className="eyebrow">Services</p>
-          <h2>Built for companies that want elegance without sacrificing practicality.</h2>
-        </div>
-        <div className="card-grid">
-          {serviceCards.map((service) => (
-            <article key={service.title} className="info-card">
-              <span className="info-card__index">{service.title.slice(0, 1)}</span>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
 
-      <section id="pricing" className="section section--soft">
-        <div className="container">
-          <div className="section-heading">
-            <p className="eyebrow">Pricing</p>
-            <h2>Clear package pricing with simple feature-based add-ons.</h2>
-          </div>
-          <div className="pricing-grid">
-            {pricingCards.map((plan) => (
-              <article key={plan.slug} className="pricing-card">
-                <div className="pricing-card__header">
-                  <h3>{plan.title}</h3>
-                  <strong>{formatCurrency(plan.price)}</strong>
-                </div>
-                <p>{plan.description}</p>
-                <ul>
-                  {plan.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-          <div className="pricing-notes">
-            {pricingNotes.map((note) => (
-              <span key={note}>{note}</span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="section container">
         <div className="cta-panel">

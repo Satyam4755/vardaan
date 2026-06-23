@@ -4,8 +4,8 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const publicLinks = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Services', to: '/services' },
+  { label: 'Pricing', to: '/pricing' },
 ];
 
 function Navbar() {
@@ -53,9 +53,9 @@ function Navbar() {
         <nav className={`site-nav ${isOpen ? 'site-nav--open' : ''}`}>
           <div className="site-nav__links">
             {publicLinks.map((link) => (
-              <a key={link.label} className="site-nav__item" href={link.href}>
+              <NavLink key={link.label} className="site-nav__item" to={link.to}>
                 {link.label}
-              </a>
+              </NavLink>
             ))}
             {user ? (
               <NavLink className="site-nav__item" to="/dashboard">
