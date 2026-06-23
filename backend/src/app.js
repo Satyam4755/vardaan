@@ -11,16 +11,9 @@ const app = express();
 
 app.set('trust proxy', 1);
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://vardaansolutions.vercel.app',
-  'https://vardaansolutions.onrender.com'
-];
-
-if (process.env.FRONTEND_URL) {
-  allowedOrigins.push(...process.env.FRONTEND_URL.split(',').map(url => url.trim()));
-}
-
+const allowedOrigins = (process.env.FRONTEND_URL || '')
+  .split(',')
+  .map((origin) => origin.trim());
 app.use(
   cors({
     origin: function (origin, callback) {
