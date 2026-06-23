@@ -195,7 +195,7 @@ const sendBuildRequestNotification = async (buildRequest) => {
         email: process.env.MAIL_FROM || 'vardaansolution@gmail.com',
       },
       to: [
-        // { email: 'shailendrasingh3722@gmail.com', name: 'Shailendra' },
+        { email: 'shailendrasingh3722@gmail.com', name: 'Shailendra' },
         { email: 'satyambpl.2000@gmail.com', name: 'Satyam' },
       ],
       subject: `New Build Request: ${safe.projectTitle}`,
