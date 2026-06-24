@@ -1,7 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
+import PremiumLoader from './components/PremiumLoader';
+import { useAuth } from './context/AuthContext';
 import DashboardPage from './pages/DashboardPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -12,6 +14,19 @@ import ServicesPage from './pages/ServicesPage';
 import SignupPage from './pages/SignupPage';
 
 function App() {
+  const { loading } = useAuth();
+  const location = useLocation();
+
+  if (loading) {
+    const isProtected = location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/request-build');
+    
+    if (isProtected) {
+      return <PremiumLoader title="Restoring your workspace..." subtitle="Verifying your secure session." />;
+    }
+    
+    return <PremiumLoader />;
+  }
+
   return (
     <Layout>
       <Routes>

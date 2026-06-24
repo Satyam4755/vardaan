@@ -7,14 +7,7 @@ function ProtectedRoute({ children }) {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <section className="page-shell container">
-        <div className="panel panel--center">
-          <div className="spinner" />
-          <p>Checking your session...</p>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   if (!user) {
