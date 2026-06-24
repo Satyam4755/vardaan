@@ -11,18 +11,23 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     let isActive = true;
 
-    const checkSession = async () => {
+    const checkSession = async (retries = 5, delay = 3000) => {
       try {
         const { data } = await apiClient.get('/auth/me');
         if (isActive) {
           setUser(data.user);
+          setLoading(false);
+          console.log('[Auth] Session restored successfully.');
         }
       } catch (error) {
-        if (isActive) {
+        const isNetworkOrServerError = !error.response || error.response.status >= 500;
+        
+        if (isNetworkOrServerError && retries > 0 && isActive) {
+          console.log(`[Auth] Backend cold start or network error. Retrying in ${delay}ms... (${retries} attempts left)`);
+          setTimeout(() => checkSession(retries - 1, delay), delay);
+        } else if (isActive) {
+          console.log(`[Auth] Session check failed definitively. Treating as unauthenticated.`, error.response?.status || 'Network error');
           setUser(null);
-        }
-      } finally {
-        if (isActive) {
           setLoading(false);
         }
       }

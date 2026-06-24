@@ -7,6 +7,7 @@ const buildCookieOptions = () => ({
   secure: process.env.NODE_ENV === 'production',
   sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   maxAge: 8 * 60 * 60 * 1000,
+  path: '/',
 });
 
 const setTokenCookie = (res, userId) => {
