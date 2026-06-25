@@ -125,7 +125,26 @@ const getMyBuildRequests = asyncHandler(async (req, res) => {
   });
 });
 
+const deleteBuildRequest = asyncHandler(async (req, res) => {
+  const request = await BuildRequest.findById(req.params.id);
+
+  if (!request) {
+    res.status(404);
+    throw new Error('Build request not found.');
+  }
+
+  if (request.user.toString() !== req.user._id.toString()) {
+    res.status(403);
+    throw new Error('Not authorized to delete this request.');
+  }
+
+  await request.deleteOne();
+
+  res.json({ message: 'Request deleted successfully.' });
+});
+
 module.exports = {
   createBuildRequest,
   getMyBuildRequests,
+  deleteBuildRequest,
 };

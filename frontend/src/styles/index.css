@@ -1131,3 +1131,90 @@ button {
   50% { left: 40%; width: 50%; }
   100% { left: 100%; width: 30%; }
 }
+
+/* --- DELETE CONFIRMATION MODAL --- */
+.delete-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: rgba(79, 18, 37, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease-out forwards;
+  padding: 1.5rem;
+}
+
+.delete-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 250, 241, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 28px;
+  padding: 2.5rem;
+  box-shadow: 0 32px 64px rgba(79, 18, 37, 0.25), inset 0 2px 0 rgba(255,255,255,0.6);
+  animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  text-align: center;
+}
+
+.delete-modal-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: rgba(127, 35, 61, 0.1);
+  color: var(--maroon-700);
+  margin: 0 auto 1.5rem;
+}
+
+.delete-modal-icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.delete-modal-title {
+  margin: 0 0 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  color: var(--ink-700);
+}
+
+.delete-modal-message {
+  margin: 0 0 2rem;
+  color: var(--ink-500);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.delete-modal-actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.btn--danger {
+  color: #fffaf3;
+  background: linear-gradient(135deg, #a72d47, #7f233d);
+  box-shadow: 0 12px 24px rgba(127, 35, 61, 0.25);
+  border: 1px solid transparent;
+}
+
+.btn--danger:hover {
+  background: linear-gradient(135deg, #c33756, #9e2a4a);
+  box-shadow: 0 16px 32px rgba(127, 35, 61, 0.35);
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.delete-btn-card {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(79, 18, 37, 0.08);
+  display: flex;
+  justify-content: flex-end;
+}
