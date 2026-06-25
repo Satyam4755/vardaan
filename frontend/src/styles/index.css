@@ -1218,3 +1218,92 @@ button {
   display: flex;
   justify-content: flex-end;
 }
+
+/* --- NAVBAR HOVER PREVIEWS --- */
+.nav-hover-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-preview-card {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 270px;
+  background: rgba(255, 250, 241, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 16px 40px rgba(79, 18, 37, 0.15), inset 0 2px 0 rgba(255,255,255,0.6);
+  z-index: 100;
+  pointer-events: none;
+  text-align: left;
+  
+  /* Initial hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(5px) scale(0.96);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.nav-hover-wrapper:hover .nav-preview-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(15px) scale(1);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+}
+
+.nav-preview-card::before {
+  /* Invisible bridge to prevent hover loss between nav item and card */
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
+.nav-preview-title {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--maroon-700);
+  font-size: 1.35rem;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+
+.nav-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.nav-preview-list li {
+  font-size: 0.85rem;
+  color: var(--ink-700);
+  position: relative;
+  padding-left: 0.9rem;
+  line-height: 1.4;
+}
+
+.nav-preview-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--maroon-400);
+}
+
+@media (max-width: 768px) {
+  .nav-preview-card {
+    display: none !important;
+  }
+}
