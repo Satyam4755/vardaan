@@ -18,7 +18,14 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error('Authentication required.');
   }
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    res.status(401);
+    throw new Error('Not authorized, token failed.');
+  }
+
   const user = await User.findById(decoded.userId);
 
   if (!user) {

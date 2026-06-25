@@ -34,6 +34,7 @@ const signupUser = asyncHandler(async (req, res) => {
     password,
   });
 
+  clearTokenCookie(res);
   setTokenCookie(res, user._id);
 
   res.status(201).json({
@@ -64,6 +65,7 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid email or password.');
   }
 
+  clearTokenCookie(res);
   setTokenCookie(res, user._id);
 
   res.json({
@@ -104,6 +106,7 @@ const googleAuth = asyncHandler(async (req, res) => {
     await user.save();
   }
 
+  clearTokenCookie(res);
   setTokenCookie(res, user._id);
 
   res.json({

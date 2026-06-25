@@ -20,11 +20,16 @@ const setTokenCookie = (res, userId) => {
 };
 
 const clearTokenCookie = (res) => {
-  res.cookie(TOKEN_COOKIE_NAME, '', {
+  const options = {
     ...buildCookieOptions(),
     maxAge: 0,
     expires: new Date(0),
-  });
+  };
+
+  res.cookie(TOKEN_COOKIE_NAME, '', { ...options, path: '/' });
+  res.cookie(TOKEN_COOKIE_NAME, '', { ...options, path: '/api/auth' });
+  res.cookie(TOKEN_COOKIE_NAME, '', { ...options, path: '/api/auth/login' });
+  res.cookie(TOKEN_COOKIE_NAME, '', { ...options, path: '/api/auth/google' });
 };
 
 module.exports = {
