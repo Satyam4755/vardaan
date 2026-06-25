@@ -1,6 +1,123 @@
 import { Link } from 'react-router-dom';
 
 import { heroStats } from '../data/siteData';
+const ShowcaseSection = () => (
+  <section className="showcase-section container">
+    <div className="showcase-header">
+      <p className="eyebrow">Selected Work</p>
+      <h2>What we build for modern businesses.</h2>
+      <p>Real categories. Practical delivery. Premium execution. See how we turn concepts into digital reality.</p>
+    </div>
+    <div className="showcase-grid">
+      {showcaseData.map((project) => (
+        <a key={project.name} href={project.url} target="_blank" rel="noreferrer" className="showcase-card">
+          <div className={`showcase-badge ${project.badgeClass}`}>
+            {project.badgeText}
+          </div>
+          <div className="showcase-content">
+            <h3>{project.name}</h3>
+            <span className="showcase-category">{project.category}</span>
+            <ul className="showcase-features">
+              {project.features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+);
+
+const AboutSection = () => (
+  <section className="about-section container">
+    <div className="about-intro">
+      <p className="eyebrow">Why Vardaan Labs?</p>
+      <h2>Turning ideas into credible digital products.</h2>
+      <p>
+        We build premium websites and software experiences for modern businesses.
+        Our approach combines clean frontend engineering, scalable backend architecture,
+        and launch-ready delivery.
+      </p>
+    </div>
+    <div className="about-cards">
+      <article className="about-card">
+        <h3>Our Services</h3>
+        <p>Business websites, custom web applications, admin dashboards, lead capture, and business workflow systems.</p>
+      </article>
+      <article className="about-card">
+        <h3>Project Scope</h3>
+        <ul>
+          <li>Brochure websites</li>
+          <li>Healthcare / service platforms</li>
+          <li>Food / business ordering systems</li>
+          <li>Internal tools / admin panels</li>
+        </ul>
+      </article>
+      <article className="about-card">
+        <h3>Vision & Philosophy</h3>
+        <ul>
+          <li>Elegant design with practical business value</li>
+          <li>Performance + usability</li>
+          <li>Scalable systems, not just static pages</li>
+          <li>Clean delivery and long-term maintainability</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+);
+
+const showcaseData = [
+  {
+    name: 'Fitcore',
+    badgeClass: 'showcase-badge--fitcore',
+    badgeText: 'FC',
+    category: 'Fitness & Wellness Platform',
+    url: 'https://fitcore-mwkx.onrender.com/',
+    features: [
+      'Premium fitness / gym web experience',
+      'Service pages and membership journeys',
+      'Conversion-focused UI'
+    ]
+  },
+  {
+    name: 'Medcii',
+    badgeClass: 'showcase-badge--medcii',
+    badgeText: 'MD',
+    category: 'Healthcare Consultation',
+    url: 'https://medcii.onrender.com/',
+    features: [
+      'Patient-friendly healthcare experience',
+      'Doctor / consultation / service flow UI',
+      'Trust-driven design for medical businesses'
+    ]
+  },
+  {
+    name: 'Tiffin Seva',
+    badgeClass: 'showcase-badge--tiffin',
+    badgeText: 'TS',
+    category: 'Meal Subscription Platform',
+    url: 'https://tiffin-seva.com/',
+    features: [
+      'Recurring meal service website',
+      'Ordering / service info / lead generation',
+      'Practical operations-focused delivery'
+    ]
+  },
+  {
+    name: 'TapResto',
+    badgeClass: 'showcase-badge--tapresto',
+    badgeText: 'TR',
+    category: 'Restaurant & Hospitality',
+    url: 'https://www.tapresto.online/',
+    features: [
+      'Restaurant web presence and ordering flow',
+      'Brand-focused digital menus',
+      'Lead capture and business workflow'
+    ]
+  }
+];
+
 
 function HomePage() {
   const requestPath = '/request-build';
@@ -55,7 +172,8 @@ function HomePage() {
         </div>
       </section>
 
-
+      <AboutSection />
+      <ShowcaseSection />
 
       <section className="section container">
         <div className="cta-panel">
