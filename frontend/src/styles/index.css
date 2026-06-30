@@ -885,6 +885,7 @@ button {
 }
 
 @media (max-width: 960px) {
+
   .hero,
   .auth-shell,
   .request-layout,
@@ -1012,7 +1013,7 @@ button {
   z-index: 9999;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, rgba(255,250,241,0.94), rgba(245,233,218,0.96));
+  background: linear-gradient(135deg, rgba(255, 250, 241, 0.94), rgba(245, 233, 218, 0.96));
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   animation: fadeIn 0.4s ease-out forwards;
@@ -1039,7 +1040,7 @@ button {
   place-items: center;
   background: linear-gradient(135deg, var(--maroon-500), var(--maroon-700));
   border-radius: 20px;
-  box-shadow: 0 16px 32px rgba(127,35,61,0.3), inset 0 2px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 16px 32px rgba(127, 35, 61, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3);
   animation: floatOrb 4s ease-in-out infinite;
   color: #fffaf1;
   font-family: 'Cormorant Garamond', serif;
@@ -1054,7 +1055,7 @@ button {
   position: absolute;
   inset: -1.8rem;
   border-radius: 35px;
-  background: conic-gradient(from 0deg, transparent, rgba(216,168,183,0.4), transparent 60%);
+  background: conic-gradient(from 0deg, transparent, rgba(216, 168, 183, 0.4), transparent 60%);
   animation: spinOrb 4s linear infinite;
   z-index: -1;
   filter: blur(12px);
@@ -1062,7 +1063,7 @@ button {
 
 .loader-brand-orb::after {
   inset: -3.5rem;
-  background: conic-gradient(from 180deg, transparent, rgba(127,35,61,0.15), transparent 60%);
+  background: conic-gradient(from 180deg, transparent, rgba(127, 35, 61, 0.15), transparent 60%);
   animation: spinOrbReverse 6s linear infinite;
 }
 
@@ -1085,7 +1086,7 @@ button {
   width: 14rem;
   height: 4px;
   margin-top: 2.5rem;
-  background: rgba(127,35,61,0.1);
+  background: rgba(127, 35, 61, 0.1);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -1103,34 +1104,74 @@ button {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUpFade {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes floatOrb {
-  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
-  50% { transform: translateY(-12px) rotateX(8deg) rotateY(12deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0) rotateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px) rotateX(8deg) rotateY(12deg);
+  }
 }
 
 @keyframes spinOrb {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spinOrbReverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes progressSweep {
-  0% { left: -30%; width: 30%; }
-  50% { left: 40%; width: 50%; }
-  100% { left: 100%; width: 30%; }
+  0% {
+    left: -30%;
+    width: 30%;
+  }
+
+  50% {
+    left: 40%;
+    width: 50%;
+  }
+
+  100% {
+    left: 100%;
+    width: 30%;
+  }
 }
 
 /* --- DELETE CONFIRMATION MODAL --- */
@@ -1155,7 +1196,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 28px;
   padding: 2.5rem;
-  box-shadow: 0 32px 64px rgba(79, 18, 37, 0.25), inset 0 2px 0 rgba(255,255,255,0.6);
+  box-shadow: 0 32px 64px rgba(79, 18, 37, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.6);
   animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   text-align: center;
 }
@@ -1208,8 +1249,15 @@ button {
 }
 
 @keyframes modalScaleUp {
-  from { opacity: 0; transform: scale(0.92) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .delete-btn-card {
@@ -1238,11 +1286,11 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   padding: 1rem 1.25rem;
-  box-shadow: 0 16px 40px rgba(79, 18, 37, 0.15), inset 0 2px 0 rgba(255,255,255,0.6);
+  box-shadow: 0 16px 40px rgba(79, 18, 37, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.6);
   z-index: 100;
   pointer-events: none;
   text-align: left;
-  
+
   /* Initial hidden state */
   opacity: 0;
   visibility: hidden;
@@ -1309,7 +1357,6 @@ button {
   }
 }
 
-/* --- ABOUT SECTION --- */
 .about-section {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
@@ -1361,7 +1408,8 @@ button {
   margin-bottom: 1rem;
 }
 
-.about-card p, .about-card ul {
+.about-card p,
+.about-card ul {
   color: var(--ink-700);
   font-size: 1.05rem;
   line-height: 1.6;
@@ -1381,7 +1429,7 @@ button {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
   .about-intro {
     position: static;
   }
@@ -1425,7 +1473,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 32px;
   padding: 3rem;
-  box-shadow: 0 12px 32px rgba(79, 18, 37, 0.06), inset 0 2px 0 rgba(255,255,255,0.8);
+  box-shadow: 0 12px 32px rgba(79, 18, 37, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.8);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   color: inherit;
@@ -1435,7 +1483,7 @@ button {
 
 .showcase-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 24px 48px rgba(79, 18, 37, 0.12), inset 0 2px 0 rgba(255,255,255,1);
+  box-shadow: 0 24px 48px rgba(79, 18, 37, 0.12), inset 0 2px 0 rgba(255, 255, 255, 1);
 }
 
 /* Fallback badge styling */
@@ -1450,7 +1498,7 @@ button {
   font-size: 1.5rem;
   letter-spacing: -0.5px;
   margin-bottom: 2rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12), inset 0 2px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), inset 0 2px 0 rgba(255, 255, 255, 0.2);
   color: white;
 }
 
